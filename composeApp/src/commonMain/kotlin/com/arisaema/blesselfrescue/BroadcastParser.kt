@@ -20,10 +20,10 @@ import com.arisaema.blesselfrescue.model.BroadcastData
             val index = raw.indexOfSequence(byteArrayOf(0x5A.toByte(), 0xA5.toByte()))
             if (index < 0 || raw.size < index + 14) return null
 
-            val deviceId = ((raw[index + 4].toInt() and 0xFF) shl 24) or
+            val deviceId = (((raw[index + 4].toInt() and 0xFF) shl 24) or
                     ((raw[index + 5].toInt() and 0xFF) shl 16) or
                     ((raw[index + 6].toInt() and 0xFF) shl 8) or
-                    (raw[index + 7].toInt() and 0xFF)
+                    (raw[index + 7].toInt() and 0xFF)).toString()
             val pressure = parsePressure(raw[index + 8],raw[index + 9]);
 
 
